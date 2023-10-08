@@ -24,9 +24,8 @@ var tooltipOptions = {
       console.log(datum)
         if (datum["image url"]) {
             // If the datum has an image URL field
-            
             var imageUrl = sanitize(datum["image url"]); // Assuming datum.image_url contains the URL of the image
-            return `<img src="${imageUrl}" alt="Image" style="max-width: 100px; max-height: 100px;">.`;
+            return `Country: ${datum["Country"]}<br> Total Score: ${datum["Total score"]}<br><img src="${imageUrl}" alt="Image" style="max-width: 100px; max-height: 100px;">.`;
         } else {
             // If there is no image URL field, show a default tooltip
             return `My failed custom tooltip and ${sanitize(datum.field)}.`;
