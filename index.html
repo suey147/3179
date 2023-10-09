@@ -19,26 +19,26 @@
 
 var spec2 = "js/map.vg.json";
 
-// var tooltipOptions = {
-//     formatTooltip: (datum, sanitize) => {
-//       console.log(datum)
-//         if (datum["image url"]) {
-//             // If the datum has an image URL field
-//             var imageUrl = sanitize(datum["image url"]); // Assuming datum.image_url contains the URL of the image
-//             return `Country: ${datum["Country"]}<br> Total Score: ${datum["Total score"]}<br><img src="${imageUrl}" alt="Image" style="max-width: 100px; max-height: 100px;">.`;
-//         } else {
-//             // If there is no image URL field, show a default tooltip
-//             return `My failed custom tooltip and ${sanitize(datum.field)}.`;
-//         }
-//     }
-//     };
-    // vegaEmbed('#map', spec2, { tooltip: tooltipOptions }).then(function(result) {
-    //   // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-    // }).catch(console.error);
-
-    vegaEmbed('#map', spec2).then(function(result) {
+var tooltipOptions = {
+    formatTooltip: (datum, sanitize) => {
+      console.log(datum)
+        if (datum["image url"]) {
+            // If the datum has an image URL field
+            var imageUrl = sanitize(datum["image url"]); // Assuming datum.image_url contains the URL of the image
+            return `Country: ${datum["Country"]}<br> Total Score: ${datum["Total score"]}<br><img src="${imageUrl}" alt="Image" style="max-width: 100px; max-height: 100px;">.`;
+        } else {
+            // If there is no image URL field, show a default tooltip
+            return `My failed custom tooltip and ${sanitize(datum.field)}.`;
+        }
+    }
+    };
+    vegaEmbed('#map', spec2, { tooltip: tooltipOptions }).then(function(result) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
+
+    // vegaEmbed('#map', spec2).then(function(result) {
+    //   // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    // }).catch(console.error);
 
   
 </script>
