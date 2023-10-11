@@ -3,6 +3,8 @@
     "data": {
       "url": "https://raw.githubusercontent.com/suey147/3179/HomeworkWeek10/data/AI_index_db.csv"
     },
+    "spacing": 50,
+    "bounds": "flush",
     "params": [
       {
         "name": "zoom_level",
@@ -35,8 +37,8 @@
     "vconcat":[
       {
         "title": "AI Global Index",
+        "height": 400,
         "width": "container",
-        "height": 500,
         "projection": {
           "type": "mercator", 
           "scale": {"expr": "zoom_level"},
@@ -52,54 +54,55 @@
                 "feature": "ne_110m_admin_0_countries"
               }
             },
-            "layer": [{
-              
-              "transform": [
+            "layer": [
               {
-                "calculate": "'Data is not available in ' + datum.properties.NAME",
-                "as": "note"
-              }
-              ],
-              "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
-              "encoding": {"tooltip": {"field": "note"}}
-            },
-            {
+                
+                "transform": [
+                {
+                  "calculate": "'Data is not available in ' + datum.properties.NAME",
+                  "as": "note"
+                }
+                ],
+                "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
+                "encoding": {"tooltip": {"field": "note"}}
+              },
+              {
 
-              "transform": [
-                    {
-                      "lookup": "properties.NAME",
-                      "from": {
-                        "data": {
-                          "url": "https://raw.githubusercontent.com/suey147/3179/HomeworkWeek10/data/AI_index_db.csv"
-                        },
-                        "key": "Country",
-                        "fields": ["Total score", "image url", "Country"]
+                "transform": [
+                      {
+                        "lookup": "properties.NAME",
+                        "from": {
+                          "data": {
+                            "url": "https://raw.githubusercontent.com/suey147/3179/HomeworkWeek10/data/AI_index_db.csv"
+                          },
+                          "key": "Country",
+                          "fields": ["Total score", "Country"]
+                        }
                       }
+                    ],
+                    
+                    "encoding": {
+                      "color": {
+                        "field": "Total score", 
+                        "type": "quantitative"
+                      },
+                      "tooltip": [
+                        {"field": "properties.NAME", "type": "nominal", "title": "Country"},
+                        {"field": "Total score", "type": "quantitative"}
+                      ]
                     },
+
+                  "layer":[
                     {
-                      "sort": [{"field": "Total score", "order": "descending"}],
-                      "window": [{"op": "rank", "as": "ranking"}]
+                      "mark": {"type": "geoshape"},             
+                      "params": [{
+                        "name": "pts",
+                        "select": {"type": "point", "fields": ["Country"]},
+                        "value": [{"Country": "United States of America"}]
+                      }]
                     }
-                  ],
-                  "mark": {"type": "geoshape"},
-                  "encoding": {
-                    "color": {
-                      "field": "Total score", 
-                      "type": "quantitative"
-                    },
-                    "tooltip": [
-                      {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-                      {"field": "Total score", "type": "quantitative"}
-                    ]
-                  },
-                  "params": [
-                  {
-                    "name": "pts",
-                    "select": {"type": "point", "fields": ["Country"]},
-                    "value": [{"Country": "United States of America"}]
-                  }
-                ]
-            }
+                  ]
+              }
             ]
           },
           {
@@ -115,85 +118,52 @@
               "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
             },
             "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
-          },
-          {
-            "data": {
-              "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
-              "format": {
-                "type": "topojson",
-                "feature": "ne_110m_admin_0_countries"
-              }
-            },
-            
-            
-            "layer": [
-              
-              {"mark": {"type": "circle", "opacity": 0.4, "size": 15}},
-              
-              {
-                "transform": [
-                  {
-                    "sort": [{"field": "Total score", "order": "descending"}],
-                    "window": [{"op": "dense_rank", "as": "ranking"}]
-                  },
-                  {"filter": "datum.ranking == 1"},
-                  {
-                    "calculate": "'The worst earthquake of; the selected period: ' + datum['mag']",
-                    "as": "text_annotation_raw"
-                  },
-                  {
-                    "calculate": "split(datum.text_annotation_raw, ';')",
-                    "as": "text_annotation"
-                  }
-                ],
-                "mark": {
-                  "type": "text",
-                  "align": "right",
-                  "dx": -8,
-                  "dy": -8,
-                  "baseline": "middle",
-                  "fontStyle": "italic"
-                },
-                "encoding": {"text": {"field": "text_annotation"}}
-              }
-            ]
           }
         ]
       },
       {
-        "width": "container",
-        "height": 300,
-        "title": {"orient": "top", "text":{"expr": "pts.Country"}, "subtitle": "subtitle"
-        },
-        "transform": [
-          {
-            "filter": {"param": "pts"}
-          },
-          {
-            "fold": ["Infrastructure", "Operating Environment", "Research", "Development", "Government Strategy"]
-          }
-        ],
-        "layer": [{
-          "mark": {"type": "arc", "innerRadius": 10, "stroke": "#fff"}
-        },{
-          "mark": {"type": "text", "radiusOffset": 20},
-          "encoding": {
-            "text": {"field": "value", "type": "quantitative"}
-          }
-        },
-        {
-          "mark": {"type": "text", "radiusOffset": 60},
-          "encoding": {
-            "text": {"field": "key", "type": "nominal"}
-          }
-        }
-        ],
-        "encoding": {
-          "theta": {"field": "value", "type": "quantitative", "stack": true},
-          "radius": {"field": "value", "scale": {"type": "sqrt", "zero": true, "rangeMin": 20}},
-          "color": {"field": "value", "type": "nominal", "legend": null}
-        }
+        "spacing": 30,
+        "bounds": "flush",
+        "hconcat":[
+            {
+                "title": {"orient": "top", "text":{"expr": "pts.Country"}, "subtitle": "subtitle"
+                },
+                "transform": [
+                  {
+                    "filter": {"param": "pts"}
+                  },
+                  {
+                    "fold": ["Infrastructure", "Operating Environment", "Research", "Development", "Government Strategy"]
+                  }
+                ],
+                "layer": [{
+                  "mark": {"type": "arc", "innerRadius": 10, "stroke": "#fff"}
+                },{
+                  "mark": {"type": "text", "radiusOffset": 20},
+                  "encoding": {
+                    "text": {"field": "value", "type": "quantitative"}
+                  }
+                },
+                {
+                  "mark": {"type": "text", "radiusOffset": 60},
+                  "encoding": {
+                    "text": {"field": "key", "type": "nominal"}
+                  }
+                }
+                ],
+                "encoding": {
+                  "theta": {"field": "value", "type": "quantitative", "stack": true},
+                  "radius": {"field": "value", "scale": {"type": "sqrt", "zero": true, "rangeMin": 20}},
+                  "color": {"field": "value", "type": "nominal", "legend": null}
+                }
+            },
+            {
+                "title": {"orient": "top", "text":"Title", "subtitle": "subtitle"},
+                "mark":"text"
+            }
+          ]
       }
+
+
     ]
   }
-  
