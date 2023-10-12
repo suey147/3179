@@ -70,6 +70,9 @@ var tooltipOptions = {
       const newparent = document.getElementById('slider');  
       const oldchild = document.getElementById("oldchildslider");  
       newparent.replaceChild(sliders[0], oldchild);
+
+      view = result.view;
+      console.log(view.data('pts_store'));
     }).catch(console.error);
 
 

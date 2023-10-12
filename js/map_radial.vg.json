@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": {
-      "url": "https://raw.githubusercontent.com/suey147/3179/HomeworkWeek10/data/AI_index_db.csv"
+      "url": "https://raw.githubusercontent.com/suey147/3179/main/data/AI_index_db.json"
     },
     "spacing": 100,
     "bounds": "flush",
@@ -73,7 +73,7 @@
                         "lookup": "properties.NAME",
                         "from": {
                           "data": {
-                            "url": "https://raw.githubusercontent.com/suey147/3179/HomeworkWeek10/data/AI_index_db.csv"
+                            "url": "https://raw.githubusercontent.com/suey147/3179/main/data/AI_index_db.json"
                           },
                           "key": "Country",
                           "fields": ["Total score", "Country"]
@@ -122,6 +122,8 @@
         ]
         },
         {
+            "spacing": 50,
+            "bounds": "flush",
             "hconcat": [
                 {
                     "title": {"orient": "top", "text":{"expr": "pts.Country"}, "subtitle": "subtitle"
@@ -142,24 +144,12 @@
                         "encoding": {
                           "text": {"field": "value", "type": "quantitative"}
                         }
-                      },
-                      {
-                        "mark": {"type": "text", "radius": 120},
-                        "encoding": {
-                          "text": {"field": "key", "type": "nominal"}
-                        }
                       }
                     ],
                     "encoding": {
                       "theta": {"field": "value", "type": "quantitative", "stack": true},
-                      "color": {"field": "value", "type": "nominal", "legend": null}
+                      "color": {"field": "key", "type": "nominal"}
                     }
-                },
-                {
-                    
-                        "title": {"orient": "top", "text":"Text", "subtitle": "subtitle"
-                        },
-                        "mark":"text"
                 }
             ]
         }
