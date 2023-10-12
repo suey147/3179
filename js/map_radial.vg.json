@@ -6,7 +6,7 @@
     "params": [
       {
         "name": "zoom_level",
-        "value": 200,
+        "value": 150,
         "bind": {
         "input": "range",
         "min": 50,
@@ -17,10 +17,10 @@
       },
       {
         "name": "center_to",
-        "value": "America",
+        "value": "All",
         "bind": {
         "input": "select",
-        "options":["America", "Europe", "Asia-Pacific", "Middle East", "Africa"],
+        "options":["All","Americas", "Europe", "Asia-Pacific", "Middle East", "Africa"],
         "name": "Region: "
         }
       }
@@ -95,15 +95,10 @@
                                   "value": "black"
                                 },
                                 "value": null
-                              }
-                        }
-                    },
-                    {
-                        "mark": {"type": "geoshape"},    
-                        "encoding": {
-                            "opacity": {
+                              },
+                              "opacity": {
                                 "condition": {
-                                    "test": "datum['Region'] === center_to",
+                                    "test": "datum['Region'] === center_to || center_to === 'All'",
                                     "value": 1
                                 },
                                 "value": 0.2
