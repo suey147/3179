@@ -1,0 +1,38 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/suey147/3179/main/data/AI_index_db.json"
+    },
+    "width": "container",
+    "height": 200,
+      "transform": [
+        {"fold": ["Infrastructure", "Operating Environment", "Talent"]}
+      ],
+    "mark": {
+      "type": "circle",
+      "opacity": 0.8,
+      "stroke": "black",
+      "strokeWidth": 1
+    },
+    "encoding": {
+      "facet": {"field": "key", "type": "ordinal", "columns": 1},
+      "x": {
+        "field": "value",
+        "type": "quantitative",
+        "axis": {"grid": false}
+      },
+      "y": {"field": "Region", "type": "nominal", "axis": {"title": ""}},
+      "color": {"field": "Region", "type": "nominal", "legend": null},
+      "size":{"value": 120},
+      "tooltip": [
+        {"field": "Country", "type": "nominal", "title": "Country"},
+        {"field": "value", "type": "quantitative"}
+        ]
+    },
+    "config": {
+        "axis": {
+          "grid": true,
+          "gridColor": "#dedede"
+        }
+      }
+  }

@@ -17,7 +17,7 @@
 <body>
   <div class="page">
     <h1>AI Index</h1>
-
+    <p>Infrastructure, Operating Environment, research...</p>
     <hr class="hr3">
     <h2>Gobal AI Index</h2>
       <!-- pure grid group -->
@@ -36,9 +36,14 @@
     <h2>Country</h2>    
       <!-- pure grid group -->
       <div class="pure-g">
-        <div class="pure-u-1-1">
-          <div id="radar"></div>
-        </div>
+        <div class="pure-u-1-2">
+            <div id="radar"></div>
+          </div>
+          <div class="pure-u-1-2">
+            <p >Radar chart of AI score</p>
+            <p>Infrastructure, Operating Environment, research...</p>
+          </div>
+        
     </div>
     <!-- end pure grid group -->
     <br>
@@ -49,7 +54,22 @@
       <!-- pure grid group -->
       <div class="pure-g">
         <div class="pure-u-1-1">
-          <div id="Alluvial"></div>
+          <div id="Alluvial" style="width: 100%;"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+    <br>
+
+    <hr class="hr3">
+    <h2>AI Implementation</h2>
+      <!-- pure grid group -->
+      <div class="pure-g">
+        <div class="pure-u-1-2">
+            <p >Radar chart of AI score</p>
+            <p>Infrastructure, Operating Environment, research...</p>
+          </div>
+        <div class="pure-u-1-2">
+          <div id="implementation" style="width: 100%;"></div>
         </div>
     </div>
     <!-- end pure grid group -->
@@ -77,6 +97,7 @@ var spec2 = "js/map.vg.json";
 var spec3 = "js/radar.vg.json";
 var spec4 = "js/Alluvial.vg.json";
 var top_10 = "js/top_10.vg.json";
+var imple = "js/implementation.vg.json";
 var tooltipOptions = {
     formatTooltip: (datum, sanitize) => {
       console.log(datum)
@@ -131,6 +152,11 @@ var tooltipOptions = {
     }).catch(console.error);
 
     vegaEmbed('#top_10', top_10).then(function(result2) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+            
+    }).catch(console.error);
+
+    vegaEmbed('#implementation', imple).then(function(result2) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
             
     }).catch(console.error);
