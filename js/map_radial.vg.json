@@ -3,12 +3,12 @@
     "data": {
       "url": "https://raw.githubusercontent.com/suey147/3179/HomeworkWeek10/data/AI_index_db.csv"
     },
-    "spacing": 50,
+    "spacing": 100,
     "bounds": "flush",
     "params": [
       {
         "name": "zoom_level",
-        "value": 150,
+        "value": 200,
         "bind": {
         "input": "range",
         "min": 50,
@@ -35,10 +35,10 @@
       }
     ],
     "vconcat":[
-      {
+        {
         "title": "AI Global Index",
+        "width": 800,
         "height": 400,
-        "width": "container",
         "projection": {
           "type": "mercator", 
           "scale": {"expr": "zoom_level"},
@@ -48,7 +48,7 @@
         "layer": [
           {
             "data": {
-              "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
+              "url": "https://raw.githubusercontent.com/suey147/3179/HomeworkWeek10/js/ne_110m_map.topojson",
               "format": {
                 "type": "topojson",
                 "feature": "ne_110m_admin_0_countries"
@@ -120,50 +120,48 @@
             "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
           }
         ]
-      },
-      {
-        "spacing": 30,
-        "bounds": "flush",
-        "hconcat":[
-            {
-                "title": {"orient": "top", "text":{"expr": "pts.Country"}, "subtitle": "subtitle"
-                },
-                "transform": [
-                  {
-                    "filter": {"param": "pts"}
-                  },
-                  {
-                    "fold": ["Infrastructure", "Operating Environment", "Research", "Development", "Government Strategy"]
-                  }
-                ],
-                "layer": [{
-                  "mark": {"type": "arc", "innerRadius": 10, "stroke": "#fff"}
-                },{
-                  "mark": {"type": "text", "radiusOffset": 20},
-                  "encoding": {
-                    "text": {"field": "value", "type": "quantitative"}
-                  }
+        },
+        {
+            "hconcat": [
+                {
+                    "title": {"orient": "top", "text":{"expr": "pts.Country"}, "subtitle": "subtitle"
+                    },
+                    "transform": [
+                      {
+                        "filter": {"param": "pts"}
+                      },
+                      {
+                        "fold": ["Infrastructure", "Operating Environment", "Research", "Development", "Government Strategy"]
+                      }
+                    ],
+                    "layer": [
+                        {
+                        "mark": {"type": "arc", "innerRadius": 20, "outerRadius": 60, "stroke": "#fff"}
+                      },{
+                        "mark": {"type": "text", "radius": 80},
+                        "encoding": {
+                          "text": {"field": "value", "type": "quantitative"}
+                        }
+                      },
+                      {
+                        "mark": {"type": "text", "radius": 120},
+                        "encoding": {
+                          "text": {"field": "key", "type": "nominal"}
+                        }
+                      }
+                    ],
+                    "encoding": {
+                      "theta": {"field": "value", "type": "quantitative", "stack": true},
+                      "color": {"field": "value", "type": "nominal", "legend": null}
+                    }
                 },
                 {
-                  "mark": {"type": "text", "radiusOffset": 60},
-                  "encoding": {
-                    "text": {"field": "key", "type": "nominal"}
-                  }
+                    
+                        "title": {"orient": "top", "text":"Text", "subtitle": "subtitle"
+                        },
+                        "mark":"text"
                 }
-                ],
-                "encoding": {
-                  "theta": {"field": "value", "type": "quantitative", "stack": true},
-                  "radius": {"field": "value", "scale": {"type": "sqrt", "zero": true, "rangeMin": 20}},
-                  "color": {"field": "value", "type": "nominal", "legend": null}
-                }
-            },
-            {
-                "title": {"orient": "top", "text":"Title", "subtitle": "subtitle"},
-                "mark":"text"
-            }
-          ]
-      }
-
-
+            ]
+        }
     ]
   }
