@@ -6,11 +6,11 @@
     "width": "container",
     "height": 200,
       "transform": [
-        {"fold": ["Infrastructure", "Operating Environment", "Talent"]}
+        {"fold": ["Research", "Development"]}
       ],
     "mark": {
       "type": "circle",
-      "opacity": 0.8,
+      "opacity": 0.6,
       "stroke": "black",
       "strokeWidth": 1
     },

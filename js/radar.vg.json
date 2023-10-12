@@ -24,7 +24,7 @@
         },
         {
           "type": "fold",
-          "fields": ["Infrastructure", "Operating Environment", "Research", "Development", "Government Strategy"],
+          "fields": ["Infrastructure", "Operating Environment", "Research", "Development", "Government Strategy", "Talent", "Commercial"],
           "as": ["key", "value"]
       }
       ]
