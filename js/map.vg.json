@@ -5,10 +5,9 @@
   "height": 400,
   "autosize": "fit",
   "projection": {
-    "type": "equalEarth", 
-    "rotate": {"expr": "center_to"},
+    "type": "mercator", 
     "scale": {"expr": "zoom_level"},
-    "center":{"expr": "[0,center1]"}
+    "center":{"expr": "center_to"}
   },
   "params": [
     {
@@ -16,7 +15,7 @@
       "value": 200,
       "bind": {
       "input": "range",
-      "min": 100,
+      "min": 50,
       "max": 2000,
       "step": 100,
       "name": "Zoom: "
@@ -24,38 +23,27 @@
     },
     {
       "name": "center_to",
-      "value": [0, 0, 0],
+      "value": [0, 70],
       "bind": {
       "input": "select",
       "options": [
-      [80, -20, 0],
-      [-50, -50, 0],
-      [-100],
-      [-70, -40], 
-      [-40]
+      [-120, 82],
+      [52, 62],
+      [115, 55],
+      [56, 56], 
+      [25, 37]
       ],
       "labels": ["America", "Europe", "Asia-Pacific", "Middle East", "Africa"],
       "name": "Region: "
       }
     },
-    { 
-      "name": "center1", 
-      "value": 0,
-      "bind": {
-        "input": "range",
-        "min": -90, 
-        "max": 90, 
-        "step": 1,
-        "name": "Map Center: "
-      } 
-    }
-  ],
-  "data": {
-    "url": "https://raw.githubusercontent.com/suey147/3179/HomeworkWeek10/js/ne_110m_map.topojson",
-    "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
-  },
+    {"name": "highlight", "select": "point"}],
+    "data": {
+      "url": "https://raw.githubusercontent.com/suey147/3179/HomeworkWeek10/js/ne_110m_map.topojson",
+      "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+    },
 
-  "transform": [
+    "transform": [
       {
         "lookup": "properties.NAME",
         "from": {

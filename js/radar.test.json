@@ -1,0 +1,35 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/suey147/3179/main/data/AI_index_db.json"
+    },
+    "width":  400,
+    "height": 400,
+    "params": [{
+        "name": "pts"
+    }],
+    "title": {"orient": "top", "text":{"expr": "pts"}, "subtitle": "subtitle"
+    },
+    "transform": [
+      {
+        "filter": "datum.Country === pts"
+      },
+      {
+        "fold": ["Infrastructure", "Operating Environment", "Research", "Development", "Government Strategy"]
+      }
+    ],
+    "layer": [
+        {
+        "mark": {"type": "arc", "innerRadius": 20, "outerRadius": 60, "stroke": "#fff"}
+      },{
+        "mark": {"type": "text", "radius": 80},
+        "encoding": {
+          "text": {"field": "value", "type": "quantitative"}
+        }
+      }
+    ],
+    "encoding": {
+      "theta": {"field": "value", "type": "quantitative", "stack": true},
+      "color": {"field": "key", "type": "nominal"}
+    }
+}
