@@ -7,18 +7,20 @@
   "autosize": {"type": "none", "contains": "padding"},
 
   "signals": [
-    {"name": "radius", "update": "width / 3"}
+    {"name": "radius", "update": "width / 3"},
+    {"name": "pts", "value":"China"}
   ],
   "repeat": {"column": ["datum.Country"]},
+  "title": {"orient": "top", "text":{"signal": "pts"}, "subtitle": "subtitle"},
   "data": [
     {
       "name": "table",
-      "url": "https://raw.githubusercontent.com/suey147/3179/HomeworkWeek9/data/AI_index_db.csv",
-      "format": {"type": "csv"},
+      "url": "https://raw.githubusercontent.com/suey147/3179/main/data/AI_index_db.json",
+      "format": {"type": "json"},
       "transform": [
         {
           "type": "filter",
-          "expr": "datum.Country === 'United States of America'"
+          "expr": "datum.Country === pts"
         },
         {
           "type": "fold",

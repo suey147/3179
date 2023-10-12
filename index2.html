@@ -5,7 +5,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
-  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <!-- CSS file -->
   <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
 
@@ -16,9 +16,10 @@
 </head>
 <body>
   <div class="page">
-    <h2>AI Index</h2>
+    <h1>AI Index</h1>
 
     <hr class="hr3">
+    <h2>Gobal AI Index</h2>
       <!-- pure grid group -->
       <div class="pure-g">
         <div class="pure-u-1-1">
@@ -32,6 +33,7 @@
     <br>
     <!-- end pure grid group -->
     <hr class="hr3">
+    <h2>Country</h2>    
       <!-- pure grid group -->
       <div class="pure-g">
         <div class="pure-u-1-1">
@@ -43,10 +45,23 @@
 
     <!-- end pure grid group -->
     <hr class="hr3">
+    <h2>relationship</h2>
       <!-- pure grid group -->
       <div class="pure-g">
         <div class="pure-u-1-1">
           <div id="Alluvial"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+    <br>
+
+    <!-- end pure grid group -->
+    <hr class="hr3">
+    <h2>Ranking</h2>
+        <!-- pure grid group -->
+        <div class="pure-g">
+        <div class="pure-u-1-1">
+            <div id="top_10"></div>
         </div>
     </div>
     <!-- end pure grid group -->
@@ -59,8 +74,9 @@
 <script type="text/javascript">
 var spec = "js/map_radial.vg.json"
 var spec2 = "js/map.vg.json";
-var spec3 = "js/radar.test.json";
+var spec3 = "js/radar.vg.json";
 var spec4 = "js/Alluvial.vg.json";
+var top_10 = "js/top_10.vg.json";
 var tooltipOptions = {
     formatTooltip: (datum, sanitize) => {
       console.log(datum)
@@ -80,18 +96,41 @@ var tooltipOptions = {
       const newparent = document.getElementById('slider');  
       const oldchild = document.getElementById("oldchildslider");  
       newparent.replaceChild(sliders[0], oldchild);
-    
       vegaEmbed('#radar', spec3).then(function(result2) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
             result.view.addEventListener('click', function (event, item){
-                result2.view.signal('pts', item.datum.Country).run()
-                console.log(item);
+                function _isContains(json, value) {
+                    let contains = false;
+                    Object.keys(json).some(key => {
+                        contains = typeof json[key].Country === 'object' ? _isContains(json[key].Country, value) : json[key].Country === value;
+                        return contains;
+                    });
+                    return contains;
+                }
+                var isValid = false;
+                $.getJSON("https://raw.githubusercontent.com/suey147/3179/main/data/AI_index_db.json", function(data) {
+                    isValid = _isContains(data,item.datum.Country );
+                    if (isValid == true){
+                    result2.view.signal('pts', item.datum.Country).run()
+                    console.log(item);
+                    }
+                });
+            
+
             })
         }).catch(console.error);
 
+
+
     }).catch(console.error);
+    
 
     vegaEmbed('#Alluvial', spec4).then(function(result2) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+            
+    }).catch(console.error);
+
+    vegaEmbed('#top_10', top_10).then(function(result2) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
             
     }).catch(console.error);

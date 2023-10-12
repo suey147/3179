@@ -32,8 +32,8 @@
         {
         "mark": "line",
         "encoding": {
-            "color": {"type": "nominal", "field": "Country"},
-            "opacity": {"value": 1},
+            "color": {"type": "nominal", "field": "Country", "legend": null},
+            "opacity": {"value": 0.5},
             "x": {"type": "nominal", "field": "key"},
             "y": {"type": "quantitative", "field": "value", "axis": null},
             "tooltip": [{
@@ -53,43 +53,62 @@
             "x": {"type": "nominal", "field": "key"},
             "y": {"value": 0}
         },
+        "transform": [
+            {
+                "filter": "datum.key == 'Commercial'"
+            }
+        ],
         "layer": [{
             "mark": {"type": "text", "style": "label"},
             "encoding": {
             "text": {"aggregate": "max", "field": "max"}
             }
-        }, {
+        }, 
+        {
             "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
         }]
         }, 
         {
-        "encoding": {
-            "x": {"type": "nominal", "field": "key"},
-            "y": {"value": 150}
-        },
-        "layer": [{
-            "mark": {"type": "text", "style": "label"},
             "encoding": {
-            "text": {"aggregate": "min", "field": "mid"}
-            }
-        }, {
-            "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
-        }]
+                "x": {"type": "nominal", "field": "key"},
+                "y": {"value": 150}
+            },
+            "transform": [
+                {
+                    "filter": "datum.key == 'Commercial'"
+                }
+            ],
+            "layer": [
+                {
+                    "mark": {"type": "text", "style": "label"},
+                    "encoding": {
+                    "text": {"aggregate": "min", "field": "mid"}
+                }
+                }, 
+                {
+                    "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
+                }
+            ]
         }, 
         {
-        "encoding": {
-            "x": {"type": "nominal", "field": "key"},
-            "y": {"value": 300}
-        },
-        "layer": [{
-            "mark": {"type": "text", "style": "label"},
             "encoding": {
-            "text": {"aggregate": "min", "field": "min"}
-            }
-            }, 
-            {
-            "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
-        }]
+                "x": {"type": "nominal", "field": "key"},
+                "y": {"value": 300}
+            },
+            "transform": [
+                {
+                    "filter": "datum.key == 'Commercial'"
+                }
+            ],
+            "layer": [{
+                "mark": {"type": "text", "style": "label"},
+                "encoding": {
+                "text": {"aggregate": "min", "field": "min"}
+                }
+                }, 
+                {
+                "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
+            }]
         }
     ],
     "config": {
