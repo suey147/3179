@@ -17,25 +17,17 @@
       },
       {
         "name": "center_to",
-        "value": [0, 70],
+        "value": "America",
         "bind": {
         "input": "select",
-        "options": [
-        [-120, 82],
-        [52, 62],
-        [115, 55],
-        [56, 56], 
-        [25, 37]
-        ],
-        "labels": ["America", "Europe", "Asia-Pacific", "Middle East", "Africa"],
+        "options":["America", "Europe", "Asia-Pacific", "Middle East", "Africa"],
         "name": "Region: "
         }
       }
     ],
     "projection": {
         "type": "mercator", 
-        "scale": {"expr": "zoom_level"},
-        "center":{"expr": "center_to"}
+        "scale": {"expr": "zoom_level"}
     },
     
     "layer": [
@@ -69,7 +61,7 @@
                         "url": "https://raw.githubusercontent.com/suey147/3179/main/data/AI_index_db.json"
                         },
                         "key": "Country",
-                        "fields": ["Total score", "Country"]
+                        "fields": ["Total score", "Country", "Region"]
                     }
                     }
                 ],
@@ -86,14 +78,38 @@
                 },
 
                 "layer":[
-                {
-                    "mark": {"type": "geoshape"},             
-                    "params": [{
-                    "name": "pts",
-                    "select": {"type": "point", "fields": ["Country"]},
-                    "value": [{"Country": "United States of America"}]
-                    }]
-                }
+                    {
+                        "mark": {"type": "geoshape"},             
+                        "params": [
+                            {
+                            "name": "pts",
+                            "select": {"type": "point", "fields": ["Country"]},
+                            "value": [{"Country": "United States of America"}]
+                            }
+                        ],
+                        "encoding": {
+                            "stroke": {
+                                "condition": {
+                                  "param": "pts",
+                                  "empty": false,
+                                  "value": "black"
+                                },
+                                "value": null
+                              }
+                        }
+                    },
+                    {
+                        "mark": {"type": "geoshape"},    
+                        "encoding": {
+                            "opacity": {
+                                "condition": {
+                                    "test": "datum['Region'] === center_to",
+                                    "value": 1
+                                },
+                                "value": 0.2
+                              }
+                        }
+                    }
                 ]
             }
         ]

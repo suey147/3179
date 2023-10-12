@@ -104,12 +104,29 @@
           "from": {"data": "category-line"},
           "encode": {
             "enter": {
-              "x": {"signal": "datum.x"},
-              "y": {"signal": "datum.y"},
+              "x": {"signal": "(radius ) * cos(scale('angular', datum.datum.key))"},
+              "y": {"signal": "(radius ) * sin(scale('angular', datum.datum.key))"},
               "text": {"signal": "datum.datum.value"},
-              "align": {"value": "center"},
-              "baseline": {"value": "middle"},
-              "fill": {"value": "black"}
+              "align": [
+                {
+                  "test": "abs(scale('angular', datum.datum.key)) > PI / 2",
+                  "value": "right"
+                },
+                {
+                  "value": "left"
+                }
+              ],
+              "baseline": [
+                {
+                  "test": "scale('angular', datum.datum.key) > 0", "value": "top"
+                },
+                {
+                  "test": "scale('angular', datum.datum.key) == 0", "value": "middle"
+                },
+                {
+                  "value": "bottom"
+                }
+              ]
             }
           }
         }
@@ -138,8 +155,8 @@
       "zindex": 1,
       "encode": {
         "enter": {
-          "x": {"signal": "(radius + 5) * cos(scale('angular', datum.key))"},
-          "y": {"signal": "(radius + 5) * sin(scale('angular', datum.key))"},
+          "x": {"signal": "(radius + 30) * cos(scale('angular', datum.key))"},
+          "y": {"signal": "(radius + 30) * sin(scale('angular', datum.key))"},
           "text": {"field": "key"},
           "align": [
             {
