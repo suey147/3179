@@ -11,7 +11,7 @@
         "input": "range",
         "min": 50,
         "max": 2000,
-        "step": 100,
+        "step": 10,
         "name": "Zoom: "
         }
       },
@@ -23,6 +23,15 @@
         "options":["All","Americas", "Europe", "Asia-Pacific", "Middle East", "Africa"],
         "name": "Region: "
         }
+      },
+      {
+        "name": "search_input",
+        "bind": {
+          "input": "search",
+          "placeholder": "Country",
+          "name": "Search: "
+        },
+        "value": ""
       }
     ],
     "projection": {
@@ -88,7 +97,7 @@
                             {
                             "name": "pts",
                             "select": {"type": "point", "fields": ["Country"]},
-                            "value": [{"Country": "United States of America"}]
+                            "value": [{"Country": "Australia"}]
                             }
                         ],
                         "encoding": {
@@ -102,7 +111,7 @@
                               },
                               "opacity": {
                                 "condition": {
-                                    "test": "datum['Region'] === center_to || center_to === 'All'",
+                                    "test":  "(datum['Region'] === center_to || center_to === 'All') &&  test(regexp(search_input,'i'), datum.Country) ",
                                     "value": 1
                                 },
                                 "value": 0.2
@@ -119,13 +128,6 @@
             "format": {"type": "topojson", "feature": "oceans"}
         },
         "mark": {"type": "geoshape", "fill": "skyblue"}
-        },
-        {
-        "data": {
-            "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/WorldMapWithGraticules.topojson",
-            "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
-        },
-        "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
         }
     ],
     "config": {
