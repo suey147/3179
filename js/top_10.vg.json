@@ -4,8 +4,9 @@
     "data": {
       "url": "https://raw.githubusercontent.com/suey147/3179/main/data/AI_index_db.json"
     },
+    "width": "container",
     "height": {"step": 17},
-    "mark": "bar",
+    "mark": {"type": "bar", "opacity": 0.7},
     "transform": [
       {
         "window": [{

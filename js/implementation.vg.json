@@ -3,32 +3,115 @@
     "data": {
       "url": "https://raw.githubusercontent.com/suey147/3179/main/data/AI_index_db.json"
     },
-    "width": "container",
-    "height": 200,
+
     "transform": [
-        {"fold": ["Infrastructure", "Operating Environment", "Talent"]}
-      ],
-    "mark": {
-      "type": "circle",
-      "opacity": 0.7,
-      "stroke": "black",
-      "strokeWidth": 1
-    },
-    "encoding": {
-      "facet": {"field": "key", "type": "ordinal", "columns": 1, "title":null, "header":{"labelColor":"white"}},
-      "x": {
+      {"fold": ["Infrastructure", "Operating Environment", "Talent"]},
+      {
+      "joinaggregate": [{
+        "op": "mean",
         "field": "value",
-        "type": "quantitative",
-        "axis": {"grid": false}
-      },
-      "y": {"field": "Region", "type": "nominal", "axis": {"title": ""}},
-      "color": {"field": "Region", "type": "nominal", "legend": null},
-      "size":{"value": 120},
-      "tooltip": [
-        {"field": "Country", "type": "nominal", "title": "Country"},
-        {"field": "value", "type": "quantitative"}
-        ]
+        "as": "Average"
+      }
+      ],
+      "groupby": ["key"]
+      }
+    ],
+    "facet": {"field": "key", "type": "ordinal", "title":null, "header":{"labelColor":"white"}},
+    "columns": 1,
+    "spec":{
+      "width": 400,
+      "height": 200,
+      "layer":[
+        {
+
+          "encoding": {
+
+            "x": {
+              "field": "value",
+              "type": "quantitative",
+              "axis": {"grid": false}
+            },
+            "y": {"field": "Region", "type": "nominal", "axis": {"title": ""}},
+
+            "tooltip": [
+              {"field": "Country", "type": "nominal", "title": "Country"},
+              {"field": "value", "type": "quantitative"}
+              ]
+          },
+            "layer": [
+              {
+                  "mark": {
+                  "type": "circle",
+                  "opacity": 0.7,
+                  "stroke": "black",
+                  "strokeWidth": 1
+                  },
+                  "encoding": {
+                    "size":{"value": 120},
+                    "color": {"field": "Region", "type": "nominal", "legend": null}
+                  }
+              },
+              {
+                  "mark": {
+                    "type": "circle",
+                    "stroke": "white"
+                  },
+                  "transform": [
+                      {
+                        "sort": [{ "field": "value", "order": "descending" }],
+                        "groupby": ["key"],
+                        "stack": "",
+                        "as": "rank"
+                      }
+                      , 
+                      {
+                        "filter": "datum.rank < 3"
+                      }
+                  ],
+                  "encoding": {
+                    "strokeWidth":{
+                        "value": 2
+                    }               
+                  }
+
+              }
+            ]
+
+        },
+        {
+                        
+
+          "encoding": {
+            "x": {
+              "aggregate": "average",
+              "field": "Average",
+              "type": "quantitative",
+              "title": null
+            }
+          },
+          "layer":[
+            {
+                "mark": {"type": "rule", "color": "white"}
+            },
+            {
+                "mark": {
+                    "type": "text",
+                    "align": "left",
+                    "baseline": "top",
+                    "dy": -120
+                  },
+                  "encoding": {
+                    "text": {"field": "Average", "format": ".2f"},
+                    "color":{
+                      "value": "white"
+                    }
+                  }
+            }
+          ]              
+        }
+      ]
     },
+
     "config": {
         "axis": {
           "grid": true,

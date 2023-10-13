@@ -5,7 +5,7 @@
     padding: 50px;
     padding-top: 10px;
 	color: aliceblue;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: Arial;;
 }
 
 .vis-container {
@@ -19,10 +19,24 @@
     padding-top: 5px;
 }
 
+.title{
+	font-family: 'AI-font';
+	font-size: 100px;
+	margin-top: 20;
+    margin-bottom: 0;
+	color: rgb(154, 236, 236);
+	text-align: center;
+}
+
+.paragraph{
+	display: flex;
+	justify-content: center;
+	font-family: Arial;
+}
 @font-face {
-	font-family: "CustomFont";
-	src: url("https://yoursite.com/css/fonts/CustomFont.eot");
-	src: url("https://yoursite.com/css/fonts/CustomFont.woff") format("woff"),
-	url("https://yoursite.com/css/fonts/CustomFont.otf") format("opentype"),
-	url("https://yoursite.com/css/fonts/CustomFont.svg#filename") format("svg");
+	font-family: "AI-font";
+	src: url("https://raw.githubusercontent.com/suey147/3179/main/webfontkit-20231013-013842/ai-yzq8y-webfont.woff2"),
+	url("https://raw.githubusercontent.com/suey147/3179/main/webfontkit-20231013-013842/ai-yzq8y-webfont.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
