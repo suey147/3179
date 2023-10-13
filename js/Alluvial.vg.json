@@ -112,12 +112,13 @@
         }
     ],
     "config": {
-      "axisX": {"domain": false, "labelAngle": 0, "tickColor": "#ccc", "title": "null"},
+      "axisX": {"domain": false, "labelAngle": 0, "tickColor": "#ccc", "title": "null", "labelColor":"white"},
       "view": {"stroke": null},
       "style": {
-        "label": {"baseline": "middle", "align": "right", "dx": -5},
+        "label": {"baseline": "middle", "align": "right", "dx": -5, "color":"white"},
         "tick": {"orient": "horizontal"}
-      }
+      },
+      "background": null
     }
   }
   

@@ -11,7 +11,7 @@
     {"name": "pts", "value":"China"}
   ],
   "repeat": {"column": ["datum.Country"]},
-  "title": {"orient": "top", "text":{"signal": "pts"}, "subtitle": "subtitle"},
+  "title": {"orient": "top", "text":{"signal": "pts"}, "color":"white", "dy": -50, "dx":-50, "fontSize": 20},
   "data": [
     {
       "name": "table",
@@ -94,7 +94,7 @@
               "stroke": {"scale": "color", "field": "category"},
               "strokeWidth": {"value": 1},
               "fill": {"scale": "color", "field": "category"},
-              "fillOpacity": {"value": 0.1}
+              "fillOpacity": {"value": 0.5}
             }
           }
         },
@@ -126,11 +126,13 @@
                 {
                   "value": "bottom"
                 }
-              ]
+              ],
+              "fill": {"value": "white"}
             }
           }
         }
       ]
+      
     },
     {
       "type": "rule",
@@ -178,7 +180,7 @@
               "value": "bottom"
             }
           ],
-          "fill": {"value": "black"},
+          "fill": {"value": "white"},
           "fontWeight": {"value": "bold"}
         }
       }

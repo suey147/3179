@@ -10,12 +10,12 @@
       ],
     "mark": {
       "type": "circle",
-      "opacity": 0.6,
+      "opacity": 0.7,
       "stroke": "black",
       "strokeWidth": 1
     },
     "encoding": {
-      "facet": {"field": "key", "type": "ordinal", "columns": 1, "title":null},
+      "facet": {"field": "key", "type": "ordinal", "columns": 1, "title":null, "header":{"labelColor":"white"}},
       "x": {
         "field": "value",
         "type": "quantitative",
@@ -32,7 +32,10 @@
     "config": {
         "axis": {
           "grid": true,
-          "gridColor": "#dedede"
-        }
+          "gridColor": "#dedede",
+          "labelColor": "white",
+          "titleColor": "white"
+        },
+        "background": null
       }
   }

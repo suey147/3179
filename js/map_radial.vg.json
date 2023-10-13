@@ -67,9 +67,13 @@
                 ],
                 
                 "encoding": {
-                    "color": {
-                    "field": "Total score", 
-                    "type": "quantitative"
+                        "color": {
+                        "field": "Total score", 
+                        "type": "quantitative",
+                            "legend":{
+                                "labelColor": "white",
+                                "titleColor": "white"
+                            }
                     },
                     "tooltip": [
                     {"field": "properties.NAME", "type": "nominal", "title": "Country"},
@@ -123,5 +127,11 @@
         },
         "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
         }
-    ]
+    ],
+    "config": {
+        "view": {
+            "stroke": "white"
+        },
+        "background": null
+    }   
   }

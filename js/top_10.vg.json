@@ -28,5 +28,14 @@
         "field": "Total score",
         "title": "population"
       }
+    },
+    "config": {
+        "axis": {
+            "gridColor": "#dedede",
+            "labelColor": "white",
+            "titleColor": "white"
+          },
+        "background": null,
+        "title":{"color":"white"}
     }
   }
