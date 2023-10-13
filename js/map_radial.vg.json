@@ -125,7 +125,7 @@
         {
             "data": {
                 "url": "https://raw.githubusercontent.com/suey147/3179/main/js/ne_110m_ocean.topojson",
-                "format": {"type": "topojson", "feature": "oceans"}
+                "format": {"type": "topojson", "feature": "ne_110m_ocean"}
             },
             "mark": {"type": "geoshape", "fill": "skyblue"}
         }
