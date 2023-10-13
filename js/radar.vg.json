@@ -8,7 +8,7 @@
 
   "signals": [
     {"name": "radius", "update": "width / 3"},
-    {"name": "pts", "value":"China"}
+    {"name": "pts", "value":"Australia"}
   ],
   "repeat": {"column": ["datum.Country"]},
   "title": {"orient": "top", "text":{"signal": "pts"}, "color":"white", "dy": -50, "dx":-50, "fontSize": 20},
