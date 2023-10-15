@@ -30,7 +30,7 @@
 
 .paragraph{
 	display: flex;
-	justify-content: center;
+	justify-content: inter-word;
 	font-family: Arial;
 }
 
