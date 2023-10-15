@@ -33,6 +33,11 @@
 	justify-content: center;
 	font-family: Arial;
 }
+
+.justyfy{
+    text-align: justify;
+    text-justify: inter-word;
+}
 @font-face {
 	font-family: "AI-font";
 	src: url("https://raw.githubusercontent.com/suey147/3179/main/webfontkit-20231013-013842/ai-yzq8y-webfont.woff2"),

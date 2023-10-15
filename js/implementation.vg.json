@@ -35,8 +35,8 @@
 
             "tooltip": [
               {"field": "Country", "type": "nominal", "title": "Country"},
-              {"field": "value", "type": "quantitative"}
-              ]
+              {"field": "value", "type": "quantitative", "title": "key"}
+            ]
           },
             "layer": [
               {
