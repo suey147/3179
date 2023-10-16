@@ -82,7 +82,12 @@
                             "legend":{
                                 "labelColor": "white",
                                 "titleColor": "white"
+                            },
+                            "scale": {
+                                "type": "threshold",
+                                "domain": [10, 20,30,40, 50,60, 100]
                             }
+                                
                     },
                     "tooltip": [
                     {"field": "properties.NAME", "type": "nominal", "title": "Country"},
